@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [[ $1 == "--date" ]]; then
+if [[ $1 == "--date" ]] || [[ $1 == "-d" ]]; then
   date
-elif [[ $1 == "--logs" ]]; then
+elif [[ $1 == "--logs" ]] || [[ $1 == "-l" ]]; then
   if [[ -z $2 ]]; then
     echo "Nieprawidłowa opcja. Podaj liczbę plików do utworzenia."
   else
@@ -15,10 +15,11 @@ elif [[ $1 == "--logs" ]]; then
       echo "Data utworzenia: $(date)" >> "$filename"
     done
   fi
-elif [[ $1 == "--help" ]]; then
+elif [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
   echo "Dostępne opcje:"
-  echo "--date: Wyświetla aktualną datę."
-  echo "--logs [liczba]: Tworzy określoną liczbę plików logx.txt, gdzie x to numer pliku."
+  echo "--date (-d): wyświetla aktualną datę"
+  echo "--logs (-l) [liczba]: tworzy określoną liczbę plików logx.txt, gdzie x to numer pliku. W każdym pliku zostanie zapisana jego nazwa, nazwa skryptu, który go utworzył, oraz data utworzenia."
+  echo "--help (-h): wyświetla wszystkie dostępne opcje"
 else
-  echo "Nieprawidłowa opcja. Użyj --help, aby wyświetlić dostępne opcje."
+  echo "Nieprawidłowa opcja. Użyj --help (-h), aby wyświetlić wszystkie dostępne opcje."
 fi
