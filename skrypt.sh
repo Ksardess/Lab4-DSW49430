@@ -15,6 +15,10 @@ elif [[ $1 == "--logs" ]]; then
       echo "Data utworzenia: $(date)" >> "$filename"
     done
   fi
+elif [[ $1 == "--help" ]]; then
+  echo "Dostępne opcje:"
+  echo "--date: Wyświetla aktualną datę."
+  echo "--logs [liczba]: Tworzy określoną liczbę plików logx.txt, gdzie x to numer pliku."
 else
-  echo "Nieprawidłowa opcja. Użyj --date, aby wyświetlić aktualną datę lub --logs [liczba], aby utworzyć określoną liczbę plików logx.txt."
+  echo "Nieprawidłowa opcja. Użyj --help, aby wyświetlić dostępne opcje."
 fi
