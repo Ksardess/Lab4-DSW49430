@@ -22,10 +22,14 @@ elif [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
   echo "--help (-h): wyświetla wszystkie dostępne opcje"
   echo "--version (-v): wyświetla informacje o wersji skryptu"
   echo "--info (-i): wyświetla informacje o skrypcie"
+  echo "--init: klonuje repozytorium i ustawia ścieżkę w zmiennej środowiskowej PATH"
 elif [[ $1 == "--version" ]] || [[ $1 == "-v" ]]; then
   echo "Wersja skryptu: 1.0"
 elif [[ $1 == "--info" ]] || [[ $1 == "-i" ]]; then
   echo "Skrypt do zarządzania datą i plikami logów."
+elif [[ $1 == "--init" ]]; then
+  git clone <repozytorium> && export PATH=$PATH:$(pwd)/<repozytorium>
 else
   echo "Nieprawidłowa opcja. Użyj --help (-h), aby wyświetlić wszystkie dostępne opcje."
 fi
+
