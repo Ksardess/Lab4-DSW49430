@@ -1,21 +1,22 @@
 #!/bin/bash
 
-if [[ $1 == "--date" ]] || [[ $1 == "-d" ]]; then
+option=""
+num_files=100
+
+read -p "Wpisz żądaną opcję: " option
+
+if [[ $option == "--date" ]] || [[ $option == "-d" ]]; then
   date
-elif [[ $1 == "--logs" ]] || [[ $1 == "-l" ]]; then
-  if [[ -z $2 ]]; then
-    echo "Nieprawidłowa opcja. Podaj liczbę plików do utworzenia."
-  else
-    num_files=$2
-    for ((i=1; i<=$num_files; i++))
-    do
-      filename="log${i}.txt"
-      echo "Nazwa pliku: $filename" > "$filename"
-      echo "Nazwa skryptu: $0" >> "$filename"
-      echo "Data utworzenia: $(date)" >> "$filename"
-    done
-  fi
-elif [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
+elif [[ $option == "--logs" ]] || [[ $option == "-l" ]]; then
+  read -p "Podaj liczbę plików do utworzenia: " num_files
+  for ((i=1; i<=$num_files; i++))
+  do
+    filename="log${i}.txt"
+    echo "Nazwa pliku: $filename" > "$filename"
+    echo "Nazwa skryptu: $0" >> "$filename"
+    echo "Data utworzenia: $(date)" >> "$filename"
+  done
+elif [[ $option == "--help" ]] || [[ $option == "-h" ]]; then
   echo "Dostępne opcje:"
   echo "--date (-d): wyświetla aktualną datę"
   echo "--logs (-l) [liczba]: tworzy określoną liczbę plików logx.txt, gdzie x to numer pliku. W każdym pliku zostanie zapisana jego nazwa, nazwa skryptu, który go utworzył, oraz data utworzenia."
@@ -24,23 +25,21 @@ elif [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
   echo "--info (-i): wyświetla informacje o skrypcie"
   echo "--init: klonuje repozytorium i ustawia ścieżkę w zmiennej środowiskowej PATH"
   echo "--error (-e) [liczba]: tworzy określoną liczbę plików errorx/errorx.txt, gdzie x to numer pliku. W każdym pliku zostanie zapisana jego nazwa, nazwa skryptu, który go utworzył, oraz data utworzenia."
-elif [[ $1 == "--version" ]] || [[ $1 == "-v" ]]; then
+elif [[ $option == "--version" ]] || [[ $option == "-v" ]]; then
   echo "Wersja skryptu: 1.0"
-elif [[ $1 == "--info" ]] || [[ $1 == "-i" ]]; then
+elif [[ $option == "--info" ]] || [[ $option == "-i" ]]; then
   echo "Skrypt do zarządzania datą i plikami logów."
-elif [[ $1 == "--init" ]]; then
-  git clone <https://github.com/Ksardess/Lab4-DSW49430.git> && export PATH=$PATH:$(pwd)/<https://github.com/Ksardess/Lab4-DSW49430.git>
-elif [[ $1 == "--error" ]] || [[ $1 == "-e" ]]; then
-  if [[ -z $2 ]]; then
-    num_files=100
-  else
-    num_files=$2
-  fi
+elif [[ $option == "--init" ]]; then
+	git clone https://github.com/Ksardess/Lab4-DSW49430.git . && export PATH=$PATH:$(pwd)
+  echo "Repozytorium zostało sklonowane, a ścieżka została dodana do zmiennej środowiskowej PATH."
+elif [[ $option == "--error" ]] || [[ $option == "-e" ]]; then
+  read -p "Podaj liczbę plików do utworzenia: " num_files
   for ((i=1; i<=$num_files; i++))
   do
     dirname="error${i}"
-    mkdir -p $dirname
     filename="${dirname}/${dirname}.txt"
+
+    mkdir "$dirname"
     echo "Nazwa pliku: $filename" > "$filename"
     echo "Nazwa skryptu: $0" >> "$filename"
     echo "Data utworzenia: $(date)" >> "$filename"
