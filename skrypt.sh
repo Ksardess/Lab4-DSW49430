@@ -20,6 +20,12 @@ elif [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
   echo "--date (-d): wyświetla aktualną datę"
   echo "--logs (-l) [liczba]: tworzy określoną liczbę plików logx.txt, gdzie x to numer pliku. W każdym pliku zostanie zapisana jego nazwa, nazwa skryptu, który go utworzył, oraz data utworzenia."
   echo "--help (-h): wyświetla wszystkie dostępne opcje"
+  echo "--version (-v): wyświetla informacje o wersji skryptu"
+  echo "--info (-i): wyświetla informacje o skrypcie"
+elif [[ $1 == "--version" ]] || [[ $1 == "-v" ]]; then
+  echo "Wersja skryptu: 1.0"
+elif [[ $1 == "--info" ]] || [[ $1 == "-i" ]]; then
+  echo "Skrypt do zarządzania datą i plikami logów."
 else
   echo "Nieprawidłowa opcja. Użyj --help (-h), aby wyświetlić wszystkie dostępne opcje."
 fi
