@@ -28,7 +28,7 @@ elif [[ $1 == "--version" ]] || [[ $1 == "-v" ]]; then
 elif [[ $1 == "--info" ]] || [[ $1 == "-i" ]]; then
   echo "Skrypt do zarządzania datą i plikami logów."
 elif [[ $1 == "--init" ]]; then
-  git clone <repozytorium> && export PATH=$PATH:$(pwd)/<repozytorium>
+  git clone <https://github.com/Ksardess/Lab4-DSW49430.git> && export PATH=$PATH:$(pwd)/<https://github.com/Ksardess/Lab4-DSW49430.git>
 else
   echo "Nieprawidłowa opcja. Użyj --help (-h), aby wyświetlić wszystkie dostępne opcje."
 fi
